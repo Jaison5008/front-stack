@@ -1,0 +1,18 @@
+ 
+ @media only screen and (min-width: 900px) { 
+    
+    .me-2{ 
+     width: 90vw;
+    } 
+    .card{ 
+        width: 90vw;
+    } 
+    .button{  
+        display: flex-start;
+        justify-content: center; 
+        align-items: center;
+    }  
+    
+    
+  }
+  
