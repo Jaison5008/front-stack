@@ -4,7 +4,7 @@ const url= 'http://localhost:8000';
 export const getallquestionthunk = createAsyncThunk('getall/questionThunk',async(_,{rejectWithValue})=>{
 
  try{  
-    const response= await axios.get(`${url}/question/get`); 
+    const response= await axios.get(`${url}`); 
     console.log(response.data.message)
     
     return response.data
@@ -15,7 +15,7 @@ export const getallquestionthunk = createAsyncThunk('getall/questionThunk',async
 export const getquestionThunk = createAsyncThunk('get/questionThunk',async(questionid,{rejectWithValue})=>{
 
     try{  
-       const response= await axios.get(`${url}/question/get/${questionid}`); 
+       const response= await axios.get(`${url}/get/${questionid}`); 
        console.log(response.data.message)
        
        return response.data
@@ -27,7 +27,7 @@ export const addallquestionthunk = createAsyncThunk('add/questionThunk',async(ad
 
     try{   
         console.log(addquestion)
-       const response= await axios.post(`${url}/question/post`,addquestion); 
+       const response= await axios.post(`${url}/post`,addquestion); 
        console.log(response.data.message)
        
        return response.data
