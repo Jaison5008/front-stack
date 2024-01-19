@@ -1,6 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";  
 import axios from 'axios' ;
-const url= 'https://stackjaison-back.onrender.com/';
+const url= 'https://stackjaison-back.onrender.com';
 export const getallquestionthunk = createAsyncThunk('getall/questionThunk',async(_,{rejectWithValue})=>{
 
  try{  

@@ -1,6 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";  
 import axios from 'axios' ;
-const url= 'https://stackjaison-back.onrender.com/';
+const url= 'https://stackjaison-back.onrender.com';
 export const addUserThunk= createAsyncThunk('post/addUserThunk',async(add,{rejectWithValue})=>{
 console.log(add)
  try{  
@@ -27,7 +27,7 @@ export const loginThunk= createAsyncThunk('login/loginUserThunk',async(login,{re
     
     try{  
        const response= await axios.post(`${url}/users/login`,login);   
-       console.log(response)
+       
        
         localStorage.setItem ("userid",JSON.stringify(response.data.users._id))  
         localStorage.setItem("token",JSON.stringify(response.data.tokens))
