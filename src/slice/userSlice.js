@@ -1,6 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";  
 import axios from 'axios' ;
-const url= 'http://localhost:8000';
+const url= 'https://stackjaison-back.onrender.com/';
 export const addUserThunk= createAsyncThunk('post/addUserThunk',async(add,{rejectWithValue})=>{
 console.log(add)
  try{  
