@@ -3,7 +3,8 @@ import Card from 'react-bootstrap/Card';
 import{getallanswerThunk,previouspage,nextpage,page} from'../../slice/answerslice';
 import {useDispatch,useSelector} from 'react-redux'
 import { getquestionThunk } from '../../slice/questionSlice'; 
-import Pagination from 'react-bootstrap/Pagination'
+import Pagination from 'react-bootstrap/Pagination' 
+import "../question/question.css"
 function Answer() {  
   const{answerList,answer,cureentpage,perpage}=useSelector(state=>state.answer) 
     console.log(answerList) 
@@ -51,7 +52,7 @@ const number=[...Array(totalpage).keys()].slice(1)
         dispatch(nextpage(totalpage))
       }
       }
-  return ( <>
+  return ( <div className='box'>
    {/*<>{questionList?<> {questionList.map((item)=>
         <Card key={item._id}>
           <Card.Body>{item.question}</Card.Body>
@@ -72,7 +73,7 @@ const number=[...Array(totalpage).keys()].slice(1)
       <Pagination.Item key={index} onClick={()=>currentpageaction(item)}>{(item)}</Pagination.Item>)}
      <Pagination.Last onClick={prevpageaction}> prev</Pagination.Last>
       </Pagination>
-   </>);
+   </div>);
 }
 
 export default Answer;

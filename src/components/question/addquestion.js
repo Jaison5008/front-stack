@@ -3,7 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux'; 
 import { addallquestionthunk } from '../../slice/questionSlice'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import'./question.css'
+
 function AddQuestion() { 
     const [question,setQuestion]=useState(''); 
     const[title,setTitle]=useState('')
@@ -35,7 +37,7 @@ function AddQuestion() {
 
   }
   }
-  return (<>
+  return (<div className='box'>
     <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Title</Form.Label>
@@ -51,7 +53,7 @@ function AddQuestion() {
       </Button> 
     </Form> 
     <h1>{error}</h1> 
-    </>
+    </div>
   );
 }
 

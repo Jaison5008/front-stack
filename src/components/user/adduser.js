@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 //import { useSubmit } from 'react-router-dom';
-import { addUserThunk } from '../../slice/userSlice';
+import { addUserThunk } from '../../slice/userSlice';  
+import '../question/question.css'
 function Adduser() {   
  
 const dispatch=useDispatch()
@@ -25,7 +26,7 @@ const submiting=async(e)=>{
     setError('pls enter all fields')
   }
 }
-  return (
+  return (<div className='box'>
     <Form> 
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
@@ -56,8 +57,7 @@ const submiting=async(e)=>{
       </Button> 
 
       <h1>{error}</h1>
-    </Form> 
-   
+    </Form> </div>
   );
 }
 

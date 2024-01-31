@@ -1,21 +1,59 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";  
+import { createSlice,createAsyncThunk} from "@reduxjs/toolkit";   
+
 import axios from 'axios' ;
+//import { token } from "../../../back/common/bcrypt";
+//const url= 'http://localhost:8000'; 
 const url= 'https://stackjaison-back.onrender.com';
 export const addUserThunk= createAsyncThunk('post/addUserThunk',async(add,{rejectWithValue})=>{
-console.log(add)
+
  try{  
     const response= await axios.post(`${url}/users/post`,add); 
-    
+    console.log(response)
     
     return response.data
     }catch(error){  
     return rejectWithValue({error:error.response.data.error})
  } }
-) 
+)   
+export const resetThunk= createAsyncThunk('reset/resetThunk',async(add,{rejectWithValue})=>{
+   // console.log(add) 
+   
+     try{   
+       // console.log(await axios.post(`${url}/users/${add._id}/${add.token}}`,add.password))
+        const response= await axios.patch(`${url}/users/${add._id}/${add.token}}`,{password:add.password}); 
+        
+        console.log(response.data)
+        return response.data
+        }catch(error){  
+        return rejectWithValue({error:error.response.data.error})
+     } }
+    )  
+export const forgetThunk= createAsyncThunk('forget/forgetThunk',async(add,{rejectWithValue})=>{
+    
+     try{  
+        const response= await axios.post(`${url}/users/reset`,add); 
+        
+        
+        return response.data
+        }catch(error){  
+        return rejectWithValue({error:error.response.data.error})
+     } }
+    ) 
 export const getUserThunk= createAsyncThunk('get/addallUserThunk',async(_,{rejectWithValue})=>{
 
     try{  
        const response= await axios.get(`${url}/users/get`); 
+       
+       
+       return response.data
+       }catch(error){  
+       return rejectWithValue({error:error.response.data.error})
+    } }
+   ) 
+   export const getUserThunkbyid= createAsyncThunk('getbyid/addallUserThunk',async(_id,{rejectWithValue})=>{
+
+    try{  
+       const response= await axios.get(`${url}/users/get/${_id}`); 
        
        
        return response.data
@@ -42,7 +80,8 @@ export const loginThunk= createAsyncThunk('login/loginUserThunk',async(login,{re
 
 const initialState={  
     getuserList:[],
-    userList:[] , 
+    userList:[] ,  
+    profile:[],
     login:{},
     isLoading:false, 
     isErorr:'',
@@ -107,7 +146,57 @@ builder
     state.isLoading=false; 
     state.getuserList=[];
     state.isErorr=action.payload.error;
-})  }
+}) 
+.addCase(forgetThunk.pending,(state,action)=>{ 
+    state.isLoading=true; 
+    
+})
+.addCase(forgetThunk.fulfilled,(state,action)=>{  
+    
+    state.isLoading=false; 
+    
+    state.isErorr=''; 
+})
+.addCase(forgetThunk.rejected,(state,action)=>{   
+    
+    state.isLoading=false; 
+    
+    state.isErorr=action.payload.error;
+})   
+
+.addCase(resetThunk.pending,(state,action)=>{ 
+    state.isLoading=true; 
+    
+})
+.addCase(resetThunk.fulfilled,(state,action)=>{  
+    
+    state.isLoading=false; 
+    
+    state.isErorr=''; 
+})
+.addCase(resetThunk.rejected,(state,action)=>{   
+    
+    state.isLoading=false; 
+    
+    state.isErorr=action.payload.error;
+})   
+.addCase(getUserThunkbyid.pending,(state,action)=>{ 
+    state.isLoading=true; 
+    
+})
+.addCase(getUserThunkbyid.fulfilled,(state,action)=>{  
+    
+    state.isLoading=false; 
+    state.profile.push(action.payload);
+    state.isErorr=''; 
+})
+.addCase(getUserThunkbyid.rejected,(state,action)=>{   
+    
+    state.isLoading=false; 
+    state.profile='';
+    state.isErorr=action.payload.error;
+})  
+}
 
 })   
 

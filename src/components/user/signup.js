@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { addUserThunk } from '../../slice/userSlice';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import "../question/question.css"
 function Signup() {  
     const dispatch=useDispatch()
 const[name,setName ]=useState('')
@@ -29,7 +30,7 @@ const submiting=async(e)=>{
     setError('enter all fields')
     }
 }
-  return (<><h5>{error}</h5>
+  return (<div className='box'><h5>{error}</h5>
     <Form> 
         <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
@@ -41,10 +42,7 @@ const submiting=async(e)=>{
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" 
         value={email} onChange={(e)=>setEmail(e.target.value)} />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
@@ -61,7 +59,7 @@ const submiting=async(e)=>{
       <Button variant="primary" type="submit" onClick={submiting}>
         Submit
       </Button>
-    </Form></>
+    </Form></div>
   );
 }
 

@@ -12,7 +12,7 @@ function Getquestion (){
  
   const navi=useNavigate()
 const {questionList}=useSelector((state)=>state.question)   
-const {login}=useSelector(state=>state.user)  
+//const {login}=useSelector(state=>state.user)  
 
 const[error,setError]=useState(false) 
 const [search,setSearch]=useState('') 
@@ -51,8 +51,8 @@ const view=(item)=>{
 
 
 
-  return (<div style={{margin:'10px'}}>  {error?<h4>login / new user signup</h4>:''} 
-           <Form className="d-flex" style={{marginBottom:'5px'}}> 
+  return (<div className='box'>  {error?<h4>login / new user signup</h4>:''} 
+           <Form className="d-flex" style={{margin:'5px'}}> 
             <Form.Control
               type="search"
               placeholder="Search"
@@ -61,12 +61,12 @@ const view=(item)=>{
           {/*<Button variant="outline-success" onClick={()=>on()}>Search</Button>*/}
             </Form> 
             
-   <div  style={{display:'flex',justifyContent:"flex-end",marginRight:'10rem'}} > 
+   <div className='bu' style={{display:'flex',justifyContent:"flex-end",marginRight:'1rem'}} > 
   <Button  onClick={addquestion} style={{marginBottom:'5px'}} key={1}>askQuestion</Button></div> 
   
 
 
-  <>{questionList?questionList.filter(val=>{
+  <div >{questionList?questionList.filter((val)=>{
   if(search===('')){
        return val;
     }
@@ -76,7 +76,7 @@ const view=(item)=>{
     }  
   
 }) .reverse()
-.map((item)=><Card className="card" key={item._id} style={{marginBottom:'5px'}}> 
+.map((item)=><Card className="bg" key={item._id} style={{marginBottom:'5px'}}> 
  
      <Card.Header>{item.title}</Card.Header>
     <Card.Body>
@@ -85,7 +85,7 @@ const view=(item)=>{
           {item.question}
         </p> 
         
-        <footer className="blockquote-footer" style={{display:'flex',justifyContent:"space-evenly", alignItems:"center"}} >
+        <div style={{display:'flex',justifyContent:"space-evenly", alignItems:"center"}} >
        
         <h6>author :{item.nick}</h6>
        
@@ -94,11 +94,11 @@ const view=(item)=>{
           <Button style={{margin:'5px'}} onClick={()=>view(item._id)} > viewAnswer</Button> 
           <Button onClick={()=>addanswer(item._id)}>AddAnswer</Button> 
           
-        </footer> 
+        </div> 
 
       </blockquote>
     </Card.Body>
-  </Card>):<>''</>}</>
+  </Card>):<>''</>}</div>
  
   
     

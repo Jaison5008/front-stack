@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 //import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'; 
 import Offcanvas from 'react-bootstrap/Offcanvas';
-
+import '../question/question.css'
 //import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -38,18 +38,21 @@ function OffcanvasExample() {
             }  
             const Home=()=>{ 
               navi('/')
+            } 
+            const profile=()=>{ 
+              navi('/get')
             }
         
   return (
-    <>
+    <div >
       {[false,].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3" style={{display:'flex',justifyContent:'space-between'  }} >
+        <Navbar key={expand} expand={expand} className="bg" style={{display:'flex',justifyContent:'space-between'  }} >
           
           <Container fluid >  
 
             <Container style={{display:'flex',justifyContent:'space-between'}}>  
             <div> 
-            <Navbar.Brand href="#">Navbar</Navbar.Brand>
+            <Navbar.Brand href="#">Stack overFlow</Navbar.Brand>
             
             </div>
             
@@ -70,13 +73,14 @@ function OffcanvasExample() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
+                  Stack overFlow
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body> 
                 
                 <Nav className="justify-content-end flex-grow-1 pe-3">  
-                {action?<>
+                {action?<> 
+                  <Nav.Link onClick={Home}>Home</Nav.Link>  
                 <Nav.Link onClick={loginaction}>Login</Nav.Link> 
                 <Nav.Link onClick={signup}>signup</Nav.Link>
                   </> 
@@ -84,7 +88,7 @@ function OffcanvasExample() {
                   <Nav.Link onClick={logoutaction}>Logout</Nav.Link> 
                   <Nav.Link onClick={Home}>Home</Nav.Link>  
                   
-                  <Nav.Link >{nick?<h6 style={{color:'blueviolet'}} key={1}>{nick}</h6>:"profile"}</Nav.Link></>}
+                  <Nav.Link onClick={profile} >{nick?<h6 style={{color:'blueviolet'}} key={1}>{nick}</h6>:"profile"}</Nav.Link></>}
                   <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -105,7 +109,7 @@ function OffcanvasExample() {
           </Container>
         </Navbar>
       ))}
-    </>
+    </div>
   );
 }
 

@@ -4,10 +4,12 @@ import Button from 'react-bootstrap/esm/Button';
 import { useSelector } from 'react-redux';
 import { addallanswerThunk} from '../../slice/answerslice';
 import { useDispatch } from 'react-redux'; 
-import{useNavigate} from 'react-router-dom'
+import{useNavigate} from 'react-router-dom' 
+import "../question/question.css"
 function Addanswer() {  
 const [answer,setAnswer]=useState('');  
-const [questionid,setQuestionid]=useState('');
+const [questionid,setQuestionid]=useState(''); 
+const[nick,setNick]=useState('');
 const[userid,setUserid]=useState(''); 
 const[error,setError]=useState('') 
 const dispatch=useDispatch()
@@ -16,14 +18,15 @@ const navi=useNavigate();
 
 console.log(selectedquestionadd)
 useEffect(( )=>{ 
-    setUserid(JSON.parse(localStorage.getItem('userid')));
+    setUserid(JSON.parse(localStorage.getItem('userid'))); 
+    setNick(JSON.parse(localStorage.getItem('nick')))
     setQuestionid(selectedquestionadd);
     
 
 },[])
  const submit=async()=>{   
     if(answer&&userid&&questionid){
-  const response= await dispatch(addallanswerThunk({answer,userid,questionid}))     
+  const response= await dispatch(addallanswerThunk({answer,userid,questionid,nick}))     
   //await dispatch(getallanswerThunk(questionid)) 
   console.log(response)
   navi('/answer')
@@ -38,7 +41,7 @@ useEffect(( )=>{
   }
 
  }
-  return (
+  return (<div className='box'>
     <Form>
       
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -46,7 +49,7 @@ useEffect(( )=>{
         <Form.Control as="textarea" rows={3} value={answer} onChange={(e)=>setAnswer(e.target.value)} />
       </Form.Group> 
       <Button onClick={submit}> submit</Button>
-    </Form>
+    </Form></div>
   );
 }
 

@@ -1,5 +1,7 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";  
-import axios from 'axios' ;
+import axios from 'axios' ; 
+//const url= 'http://localhost:8000'; 
+
 const url= 'https://stackjaison-back.onrender.com';
 export const getallquestionthunk = createAsyncThunk('getall/questionThunk',async(_,{rejectWithValue})=>{
 
@@ -42,9 +44,10 @@ const initialState={
     questionList:[] ,
     isLoading:false, 
     isErorr:'' ,
-    selectedquestionadding:'',
+    selectedquestionadding:[],
     cureentpage:'1' ,
-    perpage:'5'
+    perpage:'5', 
+    selectedquestionadd:{},
 }
 
 
@@ -54,14 +57,15 @@ const questionSlice=createSlice({
 
 reducers:{   
     selectedquestion:(state,action)=>{   
-        console.log(action.payload)
+        console.log( action.payload)
         state.selectedquestionadd=action.payload
 
     } 
    
-},
-extraReducers:(builder)=>{
-builder.addCase(getallquestionthunk.pending,(state,action)=>{ 
+}, 
+extraReducers:(builder)=>{ 
+    builder 
+    .addCase(getallquestionthunk.pending,(state)=>{ 
     state.isLoading=true; 
     })
  .addCase(getallquestionthunk.fulfilled,(state,action)=>{  
@@ -96,9 +100,9 @@ builder.addCase(getallquestionthunk.pending,(state,action)=>{
     
 })
 .addCase(getquestionThunk.fulfilled,(state,action)=>{  
-    console.log(action.payload.user.question)
+    console.log(action.payload.user)
     state.isLoading=false; 
-    state.selectedquestionadding=action.payload.user.question;
+    state.selectedquestionadding=action.payload.user;
     state.isErorr=''; 
 })
 .addCase(getquestionThunk.rejected,(state,action)=>{   

@@ -1,11 +1,13 @@
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'; 
+
 import React,{useState} from 'react';  
 
 import{useDispatch} from "react-redux" 
 import { useNavigate } from 'react-router-dom'; 
 
-import{ loginThunk} from '../../slice/userSlice';
+import{ loginThunk} from '../../slice/userSlice'; 
+import "../question/question.css"
 function Login() {  
   
 
@@ -38,10 +40,12 @@ const login=async(e)=>{
  }
  }
   
-  
+  const forget=()=>{ 
+    navi('/forget')
+  }
   
  
- return ( <div>{!errors? 
+ return ( <div className='box'>{!errors? 
    <Form  style={{marginLeft:'10px',marginRight:'30px'}}> 
        <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -80,11 +84,14 @@ const login=async(e)=>{
  
  <Button variant="primary" onClick={login}>
    Submit
- </Button>
+ </Button> 
+ 
 </Form></>
 
   
-  }
+  }  
+  <br/>
+ <Button onClick={forget}>forget password</Button><label>click the button if you forget your password</label>
   </div>
   
   );
